@@ -80,7 +80,7 @@ RSpec.describe 'Todos_API', type: :request do
         end
     end
     describe 'DELETE /todos/:id' do
-        before {delete "todos/#{todos_id}"}
+        before {delete "/todos/#{todo_id}"}
 
         it 'returns a status code 204' do
             expect(response).to have_http_status(204)
