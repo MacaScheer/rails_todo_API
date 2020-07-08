@@ -30,3 +30,7 @@ module ExceptionHandler
     json_response({ message: e.message }, :unauthorized)
   end
 end
+
+# We've defined custom Standard Error sub-classes to help handle exceptions raised. 
+# By defining error classes as sub-classes of standard error, 
+# we're able to rescue_from them once raised.
