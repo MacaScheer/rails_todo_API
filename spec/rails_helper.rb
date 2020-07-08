@@ -39,6 +39,7 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f}
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -47,7 +48,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
-
+  config.include RequestSpecHelper, type: :request
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
