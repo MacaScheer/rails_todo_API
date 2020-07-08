@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-    before :set_todo
-    before :set_todo_item, only: [:show, :update, :destroy]
+    before_action :set_todo
+    before_action :set_todo_item, only: [:show, :update, :destroy]
 
     # GET /todos/:todo_id/items
     def index
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     end
 
     def set_todo_item
-        @item = todo.items.find_by!(id: params[:id]) if @todo
+        @item = @todo.items.find_by!(id: params[:id]) if @todo
     end
 
 end
